@@ -62,10 +62,10 @@ namespace Mandelbrot_2
         {
             centerX = startValueX + (double)point.X / canvasSize * calcArea;
             centerY = startValueY + (double)point.Y / canvasSize * calcArea;
-            calcArea = calcArea / 1.5;
+            calcArea = calcArea / 2.5;
             startValueX = centerX - calcArea / 2.0;
             startValueY = centerY - calcArea / 2.0;
-            limit = (int) (limit * 1.5);
+            limit = (int) (limit * 1.1);
         }
 
         public void Iterate(int [,] pointMap)
@@ -80,14 +80,27 @@ namespace Mandelbrot_2
                     Complex c = new Complex(tx, ty);
                     Complex z = new Complex(0.0, 0.0);
                     int n = 0;
+                    bool cont = true;
+                    int matchLimit = 20;
+                    Complex[] previous = new Complex[matchLimit];             
 
-                    while (Complex.Abs(z) < 2.0 && n < limit)
+                    while (Complex.Abs(z) < 2.0 && n < limit && cont)
                     {
-                        z = Complex.Pow(z, 2.0) + c;
+                        Complex z1 = Complex.Pow(z, 2.0) + c;
                         n++;
+                        if (n > 20)
+                        {
+                            previous[n % matchLimit] = z;
+                            
+                            if (Array.IndexOf(previous, z1) >= 0)
+                            {
+                                cont = false;
+                            }
+                        }
+                        z = z1;
                     }
 
-                    pointMap[i, j] = n;
+                    pointMap[i, j] = cont ? n : limit;
                 }
             });
             
@@ -98,39 +111,39 @@ namespace Mandelbrot_2
             int m = n % 150;
             int red = 0, green = 0, blue = 0;
 
-            if (m < 25)
+            if (m < 50)
             {
                 red = 0;
-                green = m % 25 * 10;
+                green = m % 50 * 5;
                 blue = 255;
-            }
-            else if (m < 50)
-            {
-                red = 0;
-                green = 255;
-                blue = 255 - (m % 25) * 10;
-            }
-            else if (m < 75)
-            {
-                red = (m % 25) * 10;
-                green = 255;
-                blue = 0;
             }
             else if (m < 100)
             {
-                red = 255;
-                green = 255 - (m % 25) * 10;
-                blue = 0;
-            }
-            else if (m < 125)
-            {
-                red = 255;
-                green = 0;
-                blue = (m % 25) * 10;
+                red = 0;
+                green = 255;
+                blue = 255 - (m % 50) * 5;
             }
             else if (m < 150)
             {
-                red = 255 - (m % 25) * 10;
+                red = (m % 50) * 5;
+                green = 255;
+                blue = 0;
+            }
+            else if (m < 200)
+            {
+                red = 255;
+                green = 255 - (m % 50) * 5;
+                blue = 0;
+            }
+            else if (m < 250)
+            {
+                red = 255;
+                green = 0;
+                blue = (m % 50) * 5;
+            }
+            else if (m < 300)
+            {
+                red = 255 - (m % 50) * 5;
                 green = 0;
                 blue = 255;
             }

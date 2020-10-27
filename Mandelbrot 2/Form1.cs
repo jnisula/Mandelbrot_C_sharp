@@ -11,7 +11,7 @@ namespace Mandelbrot_2
             InitializeComponent();
         }
 
-        private Mandelbrot m = new Mandelbrot(-2.0, -2.0, 200, 800, 4.0);
+        private Mandelbrot m = new Mandelbrot(-2.0, -2.0, 1000, 800, 4.0);
 
         private void btnStart_Click(object sender, EventArgs e)
         {
