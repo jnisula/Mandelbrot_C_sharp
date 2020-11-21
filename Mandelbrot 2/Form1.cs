@@ -31,7 +31,7 @@ namespace Mandelbrot_2
             m.Limit = int.Parse(txtN.Text);
 
             m.reCenter(point, double.Parse(txtZoomFactor.Text));
-            
+            txtCalcArea.Text = m.CalcArea.ToString();
             pbGraph.Refresh();
         }
 

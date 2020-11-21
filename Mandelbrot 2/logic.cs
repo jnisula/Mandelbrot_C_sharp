@@ -56,6 +56,10 @@ namespace Mandelbrot_2
             get { return limit; }
             set { limit = value; }
         }
+        public double CalcArea
+        {
+            get { return calcArea; }
+        }
         #endregion 
 
         public void reCenter(Point point, double zoomFactor)

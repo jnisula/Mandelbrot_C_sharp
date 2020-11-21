@@ -33,6 +33,7 @@
             this.txtZoomFactor = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.txtCalcArea = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbGraph)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,11 +83,19 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Zoom factor";
             // 
+            // txtCalcArea
+            // 
+            this.txtCalcArea.Location = new System.Drawing.Point(447, 832);
+            this.txtCalcArea.Name = "txtCalcArea";
+            this.txtCalcArea.Size = new System.Drawing.Size(137, 20);
+            this.txtCalcArea.TabIndex = 6;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(824, 871);
+            this.Controls.Add(this.txtCalcArea);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtZoomFactor);
@@ -108,6 +117,7 @@
         private System.Windows.Forms.TextBox txtZoomFactor;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtCalcArea;
     }
 }
 
