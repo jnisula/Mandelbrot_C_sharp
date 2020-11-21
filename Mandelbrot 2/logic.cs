@@ -58,11 +58,15 @@ namespace Mandelbrot_2
         }
         #endregion 
 
-        public void reCenter(Point point)
+        public void reCenter(Point point, double zoomFactor)
         {
             centerX = startValueX + (double)point.X / canvasSize * calcArea;
             centerY = startValueY + (double)point.Y / canvasSize * calcArea;
-            calcArea = calcArea / 2.5;
+            if (Math.Abs(zoomFactor) < 0.00001)
+            {
+                zoomFactor = 1.0;
+            }
+            calcArea = calcArea / zoomFactor;
             startValueX = centerX - calcArea / 2.0;
             startValueY = centerY - calcArea / 2.0;
             limit = (int) (limit * 1.1);
@@ -108,7 +112,7 @@ namespace Mandelbrot_2
 
         private Color getColor(int n)
         {
-            int m = n % 150;
+            int m = n % 350;
             int red = 0, green = 0, blue = 0;
 
             if (m < 50)

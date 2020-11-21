@@ -28,7 +28,9 @@ namespace Mandelbrot_2
             
             Point point = e.Location;
             Console.WriteLine("Picked point: " + e.X);
-            m.reCenter(point);            
+            m.Limit = int.Parse(txtN.Text);
+
+            m.reCenter(point, double.Parse(txtZoomFactor.Text));
             
             pbGraph.Refresh();
         }
